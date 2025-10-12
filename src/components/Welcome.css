@@ -1,0 +1,298 @@
+.welcome-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #F5E6D8;
+  position: relative;
+  padding: 0 20px;
+}
+
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  padding-bottom: 280px;
+}
+
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.logo {
+  width: 160px;
+  height: 160px;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  box-shadow: 0 12px 30px rgba(255, 107, 53, 0.3);
+  object-fit: contain;
+}
+
+.app-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  color: #FF6B35;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.welcome-button {
+  background: linear-gradient(135deg, #FF6B35 0%, #F77B1C 100%);
+  color: white;
+  border: none;
+  padding: 20px 100px;
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  border-radius: 0;
+  cursor: pointer;
+  margin-bottom: 60px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+  width: 320px;
+  max-width: 90%;
+}
+
+.welcome-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.welcome-button:active {
+  transform: translateY(0);
+}
+
+.login-section, .register-section {
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.divider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.divider-line {
+  width: 4px;
+  height: 60px;
+  background-color: #FF6B35;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.divider-line.left {
+  margin-right: 30px;
+}
+
+.divider-line.right {
+  margin-left: 30px;
+}
+
+.login-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 38px;
+  font-weight: 600;
+  color: #8B7355;
+  letter-spacing: 3px;
+}
+
+.or-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #FF6B35;
+  margin: 0;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+.register-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #8B7355;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.cadastro {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #FF6B35;
+}
+
+.waves-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.waves-image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding-top: 80px;
+    padding-bottom: 310px;
+  }
+
+  .logo {
+    width: 140px;
+    height: 140px;
+  }
+
+  .app-name {
+    font-size: 40px;
+  }
+
+  .welcome-button {
+    font-size: 22px;
+    padding: 18px 80px;
+    width: 300px;
+  }
+
+  .login-text {
+    font-size: 34px;
+  }
+
+  .or-text {
+    font-size: 20px;
+  }
+
+  .register-text {
+    font-size: 16px;
+  }
+
+  .cadastro {
+    font-size: 22px;
+  }
+
+  .waves-container {
+    height: 220px;
+  }
+
+  .waves-image {
+    object-fit: fill;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-wrapper {
+    padding-top: 40px;
+    padding-bottom: 200px;
+  }
+
+  .logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+  }
+
+  .app-name {
+    font-size: 36px;
+  }
+
+  .welcome-button {
+    font-size: 20px;
+    padding: 16px 70px;
+    width: 280px;
+    margin-bottom: 50px;
+  }
+
+  .login-section, .register-section {
+    margin-bottom: 25px;
+  }
+
+  .login-text {
+    font-size: 30px;
+  }
+
+  .divider-line {
+    height: 50px;
+  }
+
+  .divider-line.left {
+    margin-right: 25px;
+  }
+
+  .divider-line.right {
+    margin-left: 25px;
+  }
+
+  .or-text {
+    font-size: 18px;
+    margin-bottom: 35px;
+  }
+
+  .register-text {
+    font-size: 15px;
+  }
+
+  .cadastro {
+    font-size: 20px;
+  }
+
+  .waves-container {
+    height: 200px;
+  }
+
+  .waves-image {
+    object-fit: fill;
+  }
+}
+
+@media (max-width: 375px) {
+  .logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .app-name {
+    font-size: 24px;
+  }
+
+  .welcome-button {
+    width: 220px;
+    font-size: 15px;
+  }
+
+  .login-text {
+    font-size: 22px;
+  }
+
+  .register-text {
+    font-size: 12px;
+  }
+
+  .cadastro {
+    font-size: 14px;
+  }
+
+  .waves-container {
+    height: 170px;
+  }
+
+  .waves-image {
+    object-fit: fill;
+  }
+}
