@@ -1,9 +1,8 @@
 import React from 'react';
 import './Welcome.css';
 import logo from '../assets/logo.png';
-import camada1 from '../assets/Camada_1.png';
 
-const Welcome = () => {
+const Welcome = ({ onNavigateToRegister, onNavigateToLogin }) => {
   return (
     <div className="welcome-container">
       <div className="content-wrapper">
@@ -12,15 +11,7 @@ const Welcome = () => {
           <h1 className="app-name">Reciclo</h1>
         </div>
         
-        <button className="welcome-button">Bem Vindo</button>
-        
-        <div className="login-section">
-          <div className="divider-container">
-            <span className="divider-line left"></span>
-            <span className="login-text">LOGIN</span>
-            <span className="divider-line right"></span>
-          </div>
-        </div>
+        <button className="welcome-button" onClick={onNavigateToLogin}>Bem Vindo</button>
         
         <p className="or-text">ou</p>
         
@@ -29,15 +20,11 @@ const Welcome = () => {
             <span className="divider-line left"></span>
             <span className="register-text">
               clique aqui para o<br />
-              <span className="cadastro">CADASTRO</span>
+              <span className="cadastro" onClick={onNavigateToRegister}>CADASTRO</span>
             </span>
             <span className="divider-line right"></span>
           </div>
         </div>
-      </div>
-      
-      <div className="waves-container">
-        <img src={camada1} alt="Ondas decorativas" className="waves-image" />
       </div>
     </div>
   );

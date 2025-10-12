@@ -2,8 +2,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background-color: #F5E6D8;
+  justify-content: center;
+  background: transparent;
   position: relative;
   padding: 0 20px;
 }
@@ -14,7 +14,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 80px;
+  padding-top: 140px;
   padding-bottom: 280px;
 }
 
@@ -23,6 +23,9 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 60px;
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
 }
 
 .logo {
@@ -32,6 +35,10 @@
   border-radius: 30px;
   box-shadow: 0 12px 30px rgba(255, 107, 53, 0.3);
   object-fit: contain;
+  opacity: 0;
+  transform: scale(0.5) rotate(-10deg);
+  animation: logoEntrance 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s forwards,
+             logoBreathe 4s ease-in-out 2s infinite;
 }
 
 .app-name {
@@ -41,6 +48,9 @@
   color: #FF6B35;
   margin: 0;
   letter-spacing: 1px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out 0.6s forwards;
 }
 
 .welcome-button {
@@ -58,21 +68,28 @@
   box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
   width: 320px;
   max-width: 90%;
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation: buttonEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s forwards;
 }
 
 .welcome-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+  background: linear-gradient(135deg, #F77B1C 0%, #FF6B35 100%);
 }
 
 .welcome-button:active {
   transform: translateY(0);
 }
 
-.login-section, .register-section {
+.register-section {
   margin-bottom: 40px;
   width: 100%;
   max-width: 350px;
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInLeft 0.8s ease-out 1.4s forwards;
 }
 
 .divider-container {
@@ -99,14 +116,6 @@
   margin-left: 30px;
 }
 
-.login-text {
-  font-family: 'Syne', sans-serif;
-  font-size: 38px;
-  font-weight: 600;
-  color: #8B7355;
-  letter-spacing: 3px;
-}
-
 .or-text {
   font-family: 'Syne', sans-serif;
   font-size: 22px;
@@ -115,6 +124,9 @@
   margin: 0;
   margin-bottom: 40px;
   letter-spacing: 2px;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: scaleIn 0.6s ease-out 1.2s forwards;
 }
 
 .register-text {
@@ -131,29 +143,101 @@
   font-weight: 600;
   letter-spacing: 2px;
   color: #FF6B35;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
 }
 
-.waves-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 280px;
-  overflow: hidden;
+.cadastro:hover {
+  color: #F77B1C;
+  transform: scale(1.05);
 }
 
-.waves-image {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  display: block;
+.cadastro:active {
+  transform: scale(0.95);
+}
+
+
+/* Animações Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes buttonEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateY(-10px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes logoBreathe {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.3);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
+  }
 }
 
 /* Responsividade para mobile */
 @media (max-width: 768px) {
   .content-wrapper {
-    padding-top: 80px;
-    padding-bottom: 310px;
+    padding-top: 100px;
+    padding-bottom: 220px;
   }
 
   .logo {
@@ -171,10 +255,6 @@
     width: 300px;
   }
 
-  .login-text {
-    font-size: 34px;
-  }
-
   .or-text {
     font-size: 20px;
   }
@@ -185,6 +265,17 @@
 
   .cadastro {
     font-size: 22px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .cadastro:hover {
+    color: #F77B1C;
+    transform: scale(1.05);
+  }
+
+  .cadastro:active {
+    transform: scale(0.95);
   }
 
   .waves-container {
@@ -198,7 +289,7 @@
 
 @media (max-width: 480px) {
   .content-wrapper {
-    padding-top: 40px;
+    padding-top: 70px;
     padding-bottom: 200px;
   }
 
@@ -219,12 +310,8 @@
     margin-bottom: 50px;
   }
 
-  .login-section, .register-section {
+  .register-section {
     margin-bottom: 25px;
-  }
-
-  .login-text {
-    font-size: 30px;
   }
 
   .divider-line {
@@ -250,6 +337,17 @@
 
   .cadastro {
     font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .cadastro:hover {
+    color: #F77B1C;
+    transform: scale(1.05);
+  }
+
+  .cadastro:active {
+    transform: scale(0.95);
   }
 
   .waves-container {
@@ -276,16 +374,23 @@
     font-size: 15px;
   }
 
-  .login-text {
-    font-size: 22px;
-  }
-
   .register-text {
     font-size: 12px;
   }
 
   .cadastro {
     font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .cadastro:hover {
+    color: #F77B1C;
+    transform: scale(1.05);
+  }
+
+  .cadastro:active {
+    transform: scale(0.95);
   }
 
   .waves-container {

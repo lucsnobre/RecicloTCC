@@ -3,4 +3,166 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  background-color: #F5E6D8;
+}
+
+.App.tutorial-active {
+  background: transparent;
+}
+
+.App.tutorial-active .fixed-waves-container,
+.App.login-active .fixed-waves-container {
+  display: none;
+}
+
+.App.login-active {
+  background: transparent;
+}
+
+.content-area {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+.content-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+.content-container.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Transições sofisticadas para autenticação */
+.App.auth-transitioning {
+  position: relative;
+  overflow: hidden;
+}
+
+.content-container.fade-out {
+  opacity: 0;
+  transform: translateY(-30px) scale(0.95);
+  filter: blur(8px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+.content-container.tutorial-enter {
+  opacity: 0;
+  transform: translateY(100px) scale(0.8);
+  animation: tutorialEntrance 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+}
+
+/* Overlay de transição */
+.App.auth-transitioning::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(74, 144, 226, 0.1) 0%, 
+    rgba(93, 173, 226, 0.2) 50%, 
+    rgba(74, 144, 226, 0.1) 100%
+  );
+  z-index: 1000;
+  opacity: 0;
+  animation: overlayPulse 1.6s ease-in-out;
+  pointer-events: none;
+}
+
+.fixed-waves-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+.App.login-active .fixed-waves-container {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fixed-waves-image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* Responsividade das ondas fixas */
+@media (max-width: 768px) {
+  .fixed-waves-container {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fixed-waves-container {
+    height: 200px;
+  }
+}
+
+@media (max-width: 375px) {
+  .fixed-waves-container {
+    height: 170px;
+  }
+}
+
+/* Animações keyframes para transições sofisticadas */
+@keyframes tutorialEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(100px) scale(0.8);
+    filter: blur(10px);
+  }
+  30% {
+    opacity: 0.3;
+    transform: translateY(50px) scale(0.9);
+    filter: blur(5px);
+  }
+  60% {
+    opacity: 0.7;
+    transform: translateY(10px) scale(1.02);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes overlayPulse {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+  }
 }

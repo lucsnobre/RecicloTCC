@@ -1,0 +1,576 @@
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: transparent;
+  position: relative;
+  padding: 0 20px;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #FF6B35;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  opacity: 0;
+  transform: translateX(-30px) rotate(-90deg);
+  animation: slideInRotate 0.8s ease-out 0.1s forwards;
+}
+
+.back-button:hover {
+  background-color: #FF6B35;
+  transform: scale(1.1);
+}
+
+.back-button:hover svg path {
+  stroke: white;
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
+
+.register-content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 160px;
+  padding-bottom: 280px;
+}
+
+.register-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 42px;
+  font-weight: 600;
+  color: #FF6B35;
+  margin: 0;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-30px) scale(0.9);
+  animation: titleEntrance 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
+}
+
+.register-form {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.input-group:nth-child(1) {
+  animation: slideInRight 0.6s ease-out 0.6s forwards;
+}
+
+.input-group:nth-child(2) {
+  animation: slideInRight 0.6s ease-out 0.8s forwards;
+}
+
+.input-group:nth-child(3) {
+  animation: slideInRight 0.6s ease-out 1s forwards;
+}
+
+.input-group:nth-child(4) {
+  animation: slideInRight 0.6s ease-out 1.2s forwards;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-input {
+  width: 100%;
+  padding: 15px 15px 15px 40px;
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #8B7355;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #FF6B35;
+  outline: none;
+  transition: border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.register-input::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(247, 123, 28, 0.6), transparent);
+  animation: shimmer 2s ease-in-out 2s;
+}
+
+.input-group:nth-child(1) .register-input::before {
+  animation-delay: 1.2s;
+}
+
+.input-group:nth-child(2) .register-input::before {
+  animation-delay: 1.4s;
+}
+
+.input-group:nth-child(3) .register-input::before {
+  animation-delay: 1.6s;
+}
+
+.input-group:nth-child(4) .register-input::before {
+  animation-delay: 1.8s;
+}
+
+.register-input::placeholder {
+  color: #8B7355;
+  opacity: 1;
+}
+
+.register-input:focus {
+  border-bottom-color: #F77B1C;
+  animation: inputPulse 0.3s ease-out;
+}
+
+.register-button {
+  background: linear-gradient(135deg, #FF6B35 0%, #F77B1C 100%);
+  color: white;
+  border: none;
+  padding: 16px 60px;
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  border-radius: 0;
+  cursor: pointer;
+  margin: 20px auto 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+  width: 200px;
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: buttonBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1.4s forwards;
+}
+
+.register-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+  background: linear-gradient(135deg, #F77B1C 0%, #FF6B35 100%);
+}
+
+.register-button:active {
+  transform: translateY(0);
+}
+
+.register-or-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #FF6B35;
+  margin: 0;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  transform: scale(0.7);
+  animation: pulseIn 0.6s ease-out 1.8s forwards;
+}
+
+.register-or-text::before,
+.register-or-text::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 60px;
+  height: 2px;
+  background-color: #FF6B35;
+}
+
+.register-or-text::before {
+  left: -80px;
+}
+
+.register-or-text::after {
+  right: -80px;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.social-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+}
+
+.social-button:nth-child(1) {
+  animation: socialButtonEntrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.4s forwards;
+}
+
+.social-button:nth-child(2) {
+  animation: socialButtonEntrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.6s forwards;
+}
+
+.social-button:nth-child(3) {
+  animation: socialButtonEntrance 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.8s forwards;
+}
+
+.social-button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.social-button:active {
+  transform: translateY(0);
+}
+
+.social-button.facebook {
+  background: linear-gradient(135deg, #FF6B35 0%, #F77B1C 100%);
+}
+
+.social-button.google {
+  background: linear-gradient(135deg, #FF6B35 0%, #F77B1C 100%);
+}
+
+.social-button.apple {
+  background: linear-gradient(135deg, #FF6B35 0%, #F77B1C 100%);
+}
+
+
+/* Animações Keyframes */
+@keyframes slideInRotate {
+  from {
+    opacity: 0;
+    transform: translateX(-30px) rotate(-90deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes titleEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.9);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(10px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes buttonBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-10px) scale(1.05);
+  }
+  70% {
+    transform: translateY(5px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulseIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes socialButtonEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8) rotate(-10deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(1.1) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes inputPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .back-button {
+    width: 45px;
+    height: 45px;
+    top: 15px;
+    left: 15px;
+  }
+
+  .register-content-wrapper {
+    padding-top: 120px;
+    padding-bottom: 220px;
+  }
+
+  .register-title {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+
+  .register-form {
+    max-width: 320px;
+    gap: 20px;
+  }
+
+  .register-input {
+    font-size: 15px;
+    padding: 12px 12px 12px 35px;
+  }
+
+  .register-button {
+    font-size: 20px;
+    padding: 14px 50px;
+    width: 180px;
+  }
+
+  .register-or-text {
+    font-size: 18px;
+  }
+
+  .register-or-text::before,
+  .register-or-text::after {
+    width: 50px;
+  }
+
+  .register-or-text::before {
+    left: -70px;
+  }
+
+  .register-or-text::after {
+    right: -70px;
+  }
+
+  .social-buttons {
+    gap: 15px;
+  }
+
+  .social-button {
+    width: 45px;
+    height: 45px;
+  }
+
+  .waves-container {
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .back-button {
+    width: 40px;
+    height: 40px;
+    top: 10px;
+    left: 10px;
+  }
+
+  .back-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .register-content-wrapper {
+    padding-top: 80px;
+    padding-bottom: 200px;
+  }
+
+  .register-title {
+    font-size: 32px;
+    margin-bottom: 35px;
+  }
+
+  .register-form {
+    max-width: 300px;
+    gap: 18px;
+  }
+
+  .register-input {
+    font-size: 14px;
+    padding: 10px 10px 10px 32px;
+  }
+
+  .input-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .input-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .register-button {
+    font-size: 18px;
+    padding: 12px 40px;
+    width: 160px;
+  }
+
+  .register-or-text {
+    font-size: 16px;
+  }
+
+  .register-or-text::before,
+  .register-or-text::after {
+    width: 40px;
+  }
+
+  .register-or-text::before {
+    left: -60px;
+  }
+
+  .register-or-text::after {
+    right: -60px;
+  }
+
+  .social-buttons {
+    gap: 12px;
+  }
+
+  .social-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .waves-container {
+    height: 200px;
+  }
+}
+
+@media (max-width: 375px) {
+  .register-title {
+    font-size: 28px;
+  }
+
+  .register-form {
+    max-width: 280px;
+  }
+
+  .register-input {
+    font-size: 13px;
+  }
+
+  .register-button {
+    font-size: 16px;
+    width: 140px;
+  }
+
+  .register-or-text {
+    font-size: 14px;
+  }
+
+  .waves-container {
+    height: 170px;
+  }
+}
