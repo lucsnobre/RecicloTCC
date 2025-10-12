@@ -4,6 +4,7 @@ import Welcome from './components/Welcome';
 import Login from './components/Login';
 import Register from './components/Register';
 import Tutorial from './components/Tutorial';
+import Profile from './components/Profile';
 import TransitionOverlay from './components/TransitionOverlay';
 import camada1 from './assets/Camada_1.png';
 
@@ -54,7 +55,27 @@ function App() {
     if (!isTransitioning) {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentScreen('home');
+        setCurrentScreen('tutorial');
+        setIsTransitioning(false);
+      }, 300);
+    }
+  };
+
+  const navigateToProfile = () => {
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentScreen('profile');
+        setIsTransitioning(false);
+      }, 300);
+    }
+  };
+
+  const navigateToSettings = () => {
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentScreen('settings');
         setIsTransitioning(false);
       }, 300);
     }
@@ -71,7 +92,7 @@ function App() {
   };
 
   return (
-    <div className={`App ${currentScreen === 'tutorial' ? 'tutorial-active' : ''} ${currentScreen === 'login' ? 'login-active' : ''} ${isAuthTransitioning ? 'auth-transitioning' : ''}`}>
+    <div className={`App ${currentScreen === 'tutorial' ? 'tutorial-active' : ''} ${currentScreen === 'login' ? 'login-active' : ''} ${currentScreen === 'profile' ? 'profile-active' : ''} ${isAuthTransitioning ? 'auth-transitioning' : ''}`}>
       <div className="content-area">
         <div className={`content-container ${currentScreen === 'welcome' && !isTransitioning ? 'active' : ''} ${isAuthTransitioning && currentScreen !== 'welcome' ? 'fade-out' : ''}`}>
           <Welcome onNavigateToRegister={navigateToRegister} onNavigateToLogin={navigateToLogin} />
@@ -83,7 +104,10 @@ function App() {
           <Register onBack={navigateToWelcome} onRegister={navigateToTutorial} />
         </div>
         <div className={`content-container ${currentScreen === 'tutorial' && !isTransitioning ? 'active' : ''} ${currentScreen === 'tutorial' && isAuthTransitioning ? 'tutorial-enter' : ''}`}>
-          <Tutorial onNavigateToHome={navigateToHome} />
+          <Tutorial onNavigateToHome={navigateToHome} onNavigateToProfile={navigateToProfile} onNavigateToSettings={navigateToSettings} />
+        </div>
+        <div className={`content-container ${currentScreen === 'profile' && !isTransitioning ? 'active' : ''}`}>
+          <Profile onNavigateToHome={navigateToHome} onNavigateToSettings={navigateToSettings} />
         </div>
       </div>
       

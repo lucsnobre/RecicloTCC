@@ -20,7 +20,7 @@ import navBusca from '../assets/tutorial_7.png';     // Busca
 import navChat from '../assets/tutorial_8.png';       // Chat
 import engrenagem from '../assets/engrenagem.png';   // Configurações
 
-const Tutorial = ({ onNavigateToHome }) => {
+const Tutorial = ({ onNavigateToHome, onNavigateToProfile, onNavigateToSettings }) => {
   const tutorialItems = [
     {
       id: 1,
@@ -74,7 +74,7 @@ const Tutorial = ({ onNavigateToHome }) => {
     <div className="tutorial-container">
       {/* Header */}
       <div className="tutorial-header">
-        <div className="settings-icon">
+        <div className="settings-icon" onClick={onNavigateToSettings}>
           <img src={engrenagem} alt="Configurações" className="settings-icon-image" />
         </div>
         <h1 className="tutorial-app-title">Reciclo</h1>
@@ -118,7 +118,10 @@ const Tutorial = ({ onNavigateToHome }) => {
               animationDelay: `${1.5 + index * 0.05}s`,
               '--item-index': index
             }}
-            onClick={() => item.id === 4 && onNavigateToHome && onNavigateToHome()}
+            onClick={() => {
+              if (item.id === 1 && onNavigateToProfile) onNavigateToProfile(); // Perfil
+              if (item.id === 4 && onNavigateToHome) onNavigateToHome(); // Home
+            }}
           >
             <img src={item.icon} alt={item.label} className="nav-icon-image" />
           </button>

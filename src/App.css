@@ -12,11 +12,13 @@
 }
 
 .App.tutorial-active .fixed-waves-container,
-.App.login-active .fixed-waves-container {
+.App.login-active .fixed-waves-container,
+.App.profile-active .fixed-waves-container {
   display: none;
 }
 
-.App.login-active {
+.App.login-active,
+.App.profile-active {
   background: transparent;
 }
 
