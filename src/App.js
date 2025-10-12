@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Welcome from './components/Welcome';
 import Login from './components/Login';
@@ -12,6 +12,35 @@ function App() {
   const [currentScreen, setCurrentScreen] = useState('welcome');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isAuthTransitioning, setIsAuthTransitioning] = useState(false);
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    bottlesCollected: 0,
+    tShirtsEarned: 0,
+    objectives: '',
+    profileImage: null
+  });
+
+  // Carregar dados do usuário do localStorage na inicialização
+  useEffect(() => {
+    const savedUserData = localStorage.getItem('recicloUserData');
+    if (savedUserData) {
+      setUserData(JSON.parse(savedUserData));
+    }
+  }, []);
+
+  // Salvar dados do usuário no localStorage sempre que userData mudar
+  useEffect(() => {
+    localStorage.setItem('recicloUserData', JSON.stringify(userData));
+  }, [userData]);
+
+  // Função para atualizar dados do usuário
+  const updateUserData = (newData) => {
+    setUserData(prevData => ({
+      ...prevData,
+      ...newData
+    }));
+  };
 
   const navigateToRegister = () => {
     if (!isTransitioning) {
@@ -101,13 +130,13 @@ function App() {
           <Login onNavigateToRegister={navigateToRegister} onBack={navigateToWelcome} onLogin={navigateToTutorial} />
         </div>
         <div className={`content-container ${currentScreen === 'register' && !isTransitioning ? 'active' : ''} ${isAuthTransitioning && currentScreen !== 'register' ? 'fade-out' : ''}`}>
-          <Register onBack={navigateToWelcome} onRegister={navigateToTutorial} />
+          <Register onBack={navigateToWelcome} onRegister={navigateToTutorial} updateUserData={updateUserData} />
         </div>
         <div className={`content-container ${currentScreen === 'tutorial' && !isTransitioning ? 'active' : ''} ${currentScreen === 'tutorial' && isAuthTransitioning ? 'tutorial-enter' : ''}`}>
           <Tutorial onNavigateToHome={navigateToHome} onNavigateToProfile={navigateToProfile} onNavigateToSettings={navigateToSettings} />
         </div>
         <div className={`content-container ${currentScreen === 'profile' && !isTransitioning ? 'active' : ''}`}>
-          <Profile onNavigateToHome={navigateToHome} onNavigateToSettings={navigateToSettings} />
+          <Profile onNavigateToHome={navigateToHome} onNavigateToSettings={navigateToSettings} userData={userData} />
         </div>
       </div>
       

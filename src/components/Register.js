@@ -1,7 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Register.css';
 
-const Register = ({ onBack, onRegister }) => {
+const Register = ({ onBack, onRegister, updateUserData }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Validações básicas
+    if (!formData.name.trim()) {
+      alert('Por favor, insira seu nome.');
+      return;
+    }
+    
+    if (!formData.email.trim()) {
+      alert('Por favor, insira seu e-mail.');
+      return;
+    }
+    
+    if (formData.password !== formData.confirmPassword) {
+      alert('As senhas não coincidem.');
+      return;
+    }
+    
+    if (formData.password.length < 6) {
+      alert('A senha deve ter pelo menos 6 caracteres.');
+      return;
+    }
+    
+    // Salvar dados do usuário
+    updateUserData({
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      objectives: `Olá! Sou ${formData.name.split(' ')[0]} e estou no app com objetivo em ser uma pessoa aficionada da Reciclo :)`
+    });
+    
+    // Navegar para tutorial
+    onRegister();
+  };
   return (
     <div className="register-container">
       <button className="back-button" onClick={onBack}>
@@ -13,7 +62,7 @@ const Register = ({ onBack, onRegister }) => {
       <div className="register-content-wrapper">
         <h1 className="register-title">Criar Conta</h1>
         
-        <form className="register-form">
+        <form className="register-form" onSubmit={handleSubmit}>
           <div className="input-group">
             <div className="input-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,7 +70,15 @@ const Register = ({ onBack, onRegister }) => {
                 <path d="M12 14C7.58172 14 4 17.5817 4 22H20C20 17.5817 16.4183 14 12 14Z" fill="#FF6B35"/>
               </svg>
             </div>
-            <input type="text" placeholder="Nome:" className="register-input" />
+            <input 
+              type="text" 
+              name="name"
+              placeholder="Nome:" 
+              className="register-input" 
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+            />
           </div>
 
           <div className="input-group">
@@ -31,7 +88,15 @@ const Register = ({ onBack, onRegister }) => {
                 <polyline points="22,6 12,13 2,6" stroke="#FF6B35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <input type="email" placeholder="E-mail:" className="register-input" />
+            <input 
+              type="email" 
+              name="email"
+              placeholder="E-mail:" 
+              className="register-input" 
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+            />
           </div>
 
           <div className="input-group">
@@ -42,7 +107,15 @@ const Register = ({ onBack, onRegister }) => {
                 <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11" stroke="#FF6B35" strokeWidth="2"/>
               </svg>
             </div>
-            <input type="password" placeholder="Senha:" className="register-input" />
+            <input 
+              type="password" 
+              name="password"
+              placeholder="Senha:" 
+              className="register-input" 
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+            />
           </div>
 
           <div className="input-group">
@@ -53,10 +126,18 @@ const Register = ({ onBack, onRegister }) => {
                 <path d="M7 11V7C7 5.67392 7.52678 4.40215 8.46447 3.46447C9.40215 2.52678 10.6739 2 12 2C13.3261 2 14.5979 2.52678 15.5355 3.46447C16.4732 4.40215 17 5.67392 17 7V11" stroke="#FF6B35" strokeWidth="2"/>
               </svg>
             </div>
-            <input type="password" placeholder="Confirmar senha:" className="register-input" />
+            <input 
+              type="password" 
+              name="confirmPassword"
+              placeholder="Confirmar senha:" 
+              className="register-input" 
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
+              required
+            />
           </div>
 
-          <button type="button" className="register-button" onClick={onRegister}>Criar</button>
+          <button type="submit" className="register-button">Criar</button>
         </form>
 
         <p className="register-or-text">ou</p>
